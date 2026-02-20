@@ -1,0 +1,1770 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>A Century of Grace & New Year Blessings</title>
+  <meta name="description" content="Celebrating a 100th Birthday & The Year of the Horse, February 21, 2026">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600&family=Noto+Serif:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --red-deep: #8B1A1A;
+      --red-primary: #C41E3A;
+      --red-light: #E8505B;
+      --gold-primary: #D4A017;
+      --gold-light: #F0D060;
+      --gold-pale: #FFF8E7;
+      --cream: #FDF6EC;
+      --cream-dark: #F5E6D0;
+      --charcoal: #2C2C2C;
+      --charcoal-light: #555;
+      --white: #FFFFFF;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      color: var(--charcoal);
+      background: var(--cream);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* ── Scroll Progress Bar ── */
+    .scroll-progress {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 3px;
+      width: 0%;
+      background: linear-gradient(90deg, var(--gold-primary), var(--gold-light), var(--gold-primary));
+      z-index: 10000;
+      transition: width 0.1s linear;
+      box-shadow: 0 0 8px rgba(212,160,23,0.5);
+    }
+
+    /* ── Invitation Reveal Overlay ── */
+    .invite-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      overflow: hidden;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .invite-overlay .curtain-left,
+    .invite-overlay .curtain-right {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: 50%;
+      transition: transform 1.2s cubic-bezier(0.76, 0, 0.24, 1);
+    }
+
+    .invite-overlay .curtain-left {
+      left: 0;
+      background: linear-gradient(135deg, var(--red-deep) 0%, #6B1010 100%);
+    }
+
+    .invite-overlay .curtain-right {
+      right: 0;
+      background: linear-gradient(225deg, var(--red-deep) 0%, #6B1010 100%);
+    }
+
+    .invite-overlay .curtain-seam {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 50%;
+      width: 2px;
+      transform: translateX(-50%);
+      background: linear-gradient(to bottom, transparent, var(--gold-primary), var(--gold-light), var(--gold-primary), transparent);
+      z-index: 2;
+      transition: opacity 0.4s ease;
+    }
+
+    .invite-overlay .invite-content {
+      position: relative;
+      z-index: 3;
+      text-align: center;
+      color: var(--gold-light);
+      transition: opacity 0.4s ease, transform 0.4s ease;
+    }
+
+    .invite-overlay .invite-seal {
+      width: 80px;
+      height: 80px;
+      margin: 0 auto 20px;
+      border-radius: 50%;
+      background: radial-gradient(circle, var(--gold-light) 0%, var(--gold-primary) 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      box-shadow: 0 0 30px rgba(212,160,23,0.4), inset 0 0 15px rgba(255,255,255,0.2);
+      animation: seal-pulse 2s ease-in-out infinite;
+    }
+
+    @keyframes seal-pulse {
+      0%, 100% { box-shadow: 0 0 30px rgba(212,160,23,0.4), inset 0 0 15px rgba(255,255,255,0.2); transform: scale(1); }
+      50% { box-shadow: 0 0 50px rgba(212,160,23,0.6), inset 0 0 15px rgba(255,255,255,0.3); transform: scale(1.05); }
+    }
+
+    .invite-overlay .invite-text {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem;
+      margin-bottom: 8px;
+      opacity: 0.9;
+    }
+
+    .invite-overlay .invite-hint {
+      font-size: 0.8rem;
+      opacity: 0.6;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      animation: hint-breathe 2s ease-in-out infinite;
+    }
+
+    @keyframes hint-breathe {
+      0%, 100% { opacity: 0.4; }
+      50% { opacity: 0.8; }
+    }
+
+    .invite-overlay.opening .curtain-left { transform: translateX(-100%); }
+    .invite-overlay.opening .curtain-right { transform: translateX(100%); }
+    .invite-overlay.opening .curtain-seam { opacity: 0; }
+    .invite-overlay.opening .invite-content { opacity: 0; transform: scale(0.8); }
+
+    .invite-overlay.done { pointer-events: none; visibility: hidden; }
+
+    body.locked { overflow: hidden; }
+
+    /* ── Global Floating Blossoms ── */
+    .global-blossoms {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 9;
+      overflow: hidden;
+    }
+
+    .blossom-petal {
+      position: absolute;
+      width: 12px;
+      height: 12px;
+      opacity: 0;
+      animation: petal-fall linear infinite;
+      will-change: transform;
+    }
+
+    .blossom-petal svg {
+      width: 100%;
+      height: 100%;
+    }
+
+    @keyframes petal-fall {
+      0% { opacity: 0; transform: translateY(-20px) rotate(0deg) translateX(0); }
+      5% { opacity: 0.7; }
+      50% { transform: translateY(50vh) rotate(180deg) translateX(40px); }
+      95% { opacity: 0.4; }
+      100% { opacity: 0; transform: translateY(105vh) rotate(360deg) translateX(-20px); }
+    }
+
+    /* ── Language Toggle ── */
+    .lang-toggle {
+      position: fixed;
+      top: 16px;
+      right: 16px;
+      z-index: 1000;
+      display: flex;
+      background: rgba(255,255,255,0.95);
+      backdrop-filter: blur(10px);
+      border-radius: 24px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.15);
+      overflow: hidden;
+      border: 1px solid rgba(196,30,58,0.2);
+      opacity: 0;
+      transform: translateY(-10px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+    .lang-toggle.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .lang-btn {
+      padding: 8px 16px;
+      border: none;
+      background: transparent;
+      font-family: 'Inter', sans-serif;
+      font-size: 13px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+      color: var(--charcoal-light);
+    }
+
+    .lang-btn:active { transform: scale(0.92); }
+
+    .lang-btn.active {
+      background: var(--red-primary);
+      color: var(--white);
+    }
+
+    [lang-vi] { display: none; }
+    body.vi [lang-en] { display: none; }
+    body.vi [lang-vi] { display: block; }
+    body.vi span[lang-vi] { display: inline; }
+    body.vi span[lang-en] { display: none; }
+    body:not(.vi) span[lang-en] { display: inline; }
+    body:not(.vi) span[lang-vi] { display: none; }
+
+    /* ── Navigation ── */
+    .nav {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      z-index: 999;
+      background: rgba(255,255,255,0.97);
+      backdrop-filter: blur(12px);
+      border-top: 1px solid rgba(196,30,58,0.1);
+      display: flex;
+      justify-content: space-around;
+      padding: 8px 0;
+      padding-bottom: max(8px, env(safe-area-inset-bottom));
+      transform: translateY(100%);
+      transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    .nav.visible { transform: translateY(0); }
+
+    .nav a {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-decoration: none;
+      color: var(--charcoal-light);
+      font-size: 10px;
+      font-weight: 500;
+      gap: 2px;
+      transition: color 0.3s, transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+      padding: 4px 8px;
+    }
+
+    .nav a:active { transform: scale(0.88); }
+
+    .nav a:hover, .nav a.active { color: var(--red-primary); }
+
+    .nav a.active .nav-icon { transform: scale(1.15); }
+
+    .nav-icon {
+      font-size: 20px;
+      line-height: 1;
+      transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    /* ── Hero Section ── */
+    .hero {
+      min-height: 100vh;
+      min-height: 100svh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+      background: linear-gradient(165deg, var(--red-deep) 0%, var(--red-primary) 40%, #a01530 70%, var(--red-deep) 100%);
+      padding: 60px 24px 40px;
+      text-align: center;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at 20% 20%, rgba(212,160,23,0.15) 0%, transparent 50%),
+        radial-gradient(circle at 80% 80%, rgba(212,160,23,0.1) 0%, transparent 50%),
+        radial-gradient(circle at 50% 50%, rgba(255,255,255,0.03) 0%, transparent 70%);
+    }
+
+    .hero-shimmer {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(105deg, transparent 40%, rgba(240,208,96,0.05) 45%, rgba(240,208,96,0.1) 50%, rgba(240,208,96,0.05) 55%, transparent 60%);
+      background-size: 200% 100%;
+      animation: shimmer 6s ease-in-out infinite;
+      pointer-events: none;
+    }
+
+    @keyframes shimmer {
+      0% { background-position: 200% 0; }
+      100% { background-position: -200% 0; }
+    }
+
+    .hero-particles {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      pointer-events: none;
+    }
+
+    .particle {
+      position: absolute;
+      border-radius: 50%;
+      opacity: 0;
+      animation: float-up linear infinite;
+      will-change: transform;
+    }
+
+    @keyframes float-up {
+      0% { opacity: 0; transform: translateY(100vh) scale(0) rotate(0deg); }
+      10% { opacity: 0.8; }
+      90% { opacity: 0.3; }
+      100% { opacity: 0; transform: translateY(-20vh) scale(1) rotate(180deg); }
+    }
+
+    .hero-svg-container {
+      position: relative;
+      width: min(380px, 88vw);
+      height: min(400px, 92vw);
+      margin-bottom: 16px;
+      will-change: transform;
+    }
+
+    .hero-svg-container svg {
+      overflow: visible;
+    }
+
+    /* SVG entrance choreography */
+    .svg-ring-outer { opacity: 0; transform-origin: 200px 200px; }
+    .svg-ring-inner { opacity: 0; transform-origin: 200px 200px; }
+    .svg-lantern-l { opacity: 0; transform-origin: 80px 0px; }
+    .svg-lantern-r { opacity: 0; transform-origin: 320px 0px; }
+    .svg-100 { opacity: 0; }
+    .svg-subtitle { opacity: 0; }
+    .svg-horse { opacity: 0; }
+    .svg-year-text { opacity: 0; }
+    .svg-blossoms { opacity: 0; }
+    .svg-sparkles { opacity: 0; }
+
+    .hero.animate-in .svg-ring-outer {
+      animation: ring-spin-in 1.8s cubic-bezier(0.22, 1, 0.36, 1) 0.2s both;
+    }
+    .hero.animate-in .svg-ring-inner {
+      animation: ring-spin-in 1.8s cubic-bezier(0.22, 1, 0.36, 1) 0.35s both;
+    }
+
+    @keyframes ring-spin-in {
+      from { opacity: 0; transform: rotate(-90deg) scale(0.5); }
+      to { opacity: 1; transform: rotate(0deg) scale(1); }
+    }
+
+    .hero.animate-in .svg-lantern-l {
+      animation: lantern-drop 1s cubic-bezier(0.34, 1.56, 0.64, 1) 0.6s both;
+    }
+    .hero.animate-in .svg-lantern-r {
+      animation: lantern-drop 1s cubic-bezier(0.34, 1.56, 0.64, 1) 0.75s both;
+    }
+
+    @keyframes lantern-drop {
+      from { opacity: 0; transform: translateY(-40px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .hero.animate-in .svg-100 {
+      animation: number-reveal 1.6s cubic-bezier(0.22, 1, 0.36, 1) 0.8s both;
+    }
+
+    @keyframes number-reveal {
+      0% { opacity: 0; transform: translateY(30px) scale(0.5); filter: blur(4px); }
+      50% { opacity: 1; transform: translateY(-6px) scale(1.08); filter: blur(0); }
+      70% { transform: translateY(2px) scale(0.98); }
+      100% { opacity: 1; transform: translateY(0) scale(1); }
+    }
+
+    .hero.animate-in .svg-subtitle {
+      animation: fade-in-up 0.8s ease-out 1.3s both;
+    }
+    .hero.animate-in .svg-horse {
+      animation: horse-gallop 1.2s cubic-bezier(0.22, 1, 0.36, 1) 1.5s both;
+    }
+
+    @keyframes horse-gallop {
+      from { opacity: 0; transform: translate(-30px, 10px) scale(0.8); }
+      60% { transform: translate(3px, -2px) scale(1.02); }
+      to { opacity: 1; transform: translate(0, 0) scale(1); }
+    }
+
+    .hero.animate-in .svg-year-text {
+      animation: fade-in-up 0.8s ease-out 1.9s both;
+    }
+    .hero.animate-in .svg-blossoms {
+      animation: blossoms-bloom 1.5s ease-out 1.2s both;
+    }
+
+    @keyframes blossoms-bloom {
+      from { opacity: 0; transform: scale(0.3); }
+      to { opacity: 0.7; transform: scale(1); }
+    }
+
+    .hero.animate-in .svg-sparkles {
+      animation: fade-in-up 1s ease-out 2s both;
+    }
+
+    @keyframes fade-in-up {
+      from { opacity: 0; transform: translateY(15px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Continuous SVG ambient animations */
+    .svg-lantern-l { animation: lantern-sway-l 4s ease-in-out infinite !important; }
+    .svg-lantern-r { animation: lantern-sway-r 4.5s ease-in-out infinite !important; }
+    .hero:not(.animate-in) .svg-lantern-l,
+    .hero:not(.animate-in) .svg-lantern-r { animation: none !important; }
+    .hero.ambient .svg-lantern-l {
+      animation: lantern-sway-l 4s ease-in-out infinite !important;
+      opacity: 1 !important;
+    }
+    .hero.ambient .svg-lantern-r {
+      animation: lantern-sway-r 4.5s ease-in-out infinite !important;
+      opacity: 1 !important;
+    }
+
+    @keyframes lantern-sway-l {
+      0%, 100% { transform: rotate(-1.5deg); }
+      50% { transform: rotate(1.5deg); }
+    }
+    @keyframes lantern-sway-r {
+      0%, 100% { transform: rotate(1.2deg); }
+      50% { transform: rotate(-1.2deg); }
+    }
+
+    .hero-title {
+      font-family: 'Playfair Display', serif;
+      color: var(--gold-light);
+      font-size: clamp(1.6rem, 5vw, 2.4rem);
+      font-weight: 700;
+      line-height: 1.3;
+      margin-bottom: 12px;
+      text-shadow: 0 2px 20px rgba(0,0,0,0.3);
+      opacity: 0;
+    }
+
+    .hero.animate-in .hero-title {
+      animation: text-reveal 1s cubic-bezier(0.22, 1, 0.36, 1) 2.2s both;
+    }
+
+    @keyframes text-reveal {
+      from { opacity: 0; transform: translateY(30px); filter: blur(8px); }
+      to { opacity: 1; transform: translateY(0); filter: blur(0); }
+    }
+
+    .hero-subtitle {
+      color: rgba(255,248,231,0.9);
+      font-size: clamp(0.9rem, 2.5vw, 1.1rem);
+      font-weight: 300;
+      margin-bottom: 8px;
+      opacity: 0;
+    }
+
+    .hero.animate-in .hero-subtitle {
+      animation: text-reveal 1s cubic-bezier(0.22, 1, 0.36, 1) 2.5s both;
+    }
+
+    .hero-date {
+      color: var(--gold-light);
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1rem, 3vw, 1.3rem);
+      font-style: italic;
+      margin-bottom: 32px;
+      opacity: 0;
+    }
+
+    .hero.animate-in .hero-date {
+      animation: text-reveal 1s cubic-bezier(0.22, 1, 0.36, 1) 2.7s both;
+    }
+
+    /* ── Countdown ── */
+    .countdown {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      opacity: 0;
+    }
+
+    .hero.animate-in .countdown {
+      animation: fade-in-up 1s ease-out 3s both;
+    }
+
+    .countdown-unit {
+      background: rgba(255,255,255,0.1);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(212,160,23,0.3);
+      border-radius: 12px;
+      padding: 12px 10px;
+      min-width: 64px;
+      text-align: center;
+      transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), border-color 0.3s;
+    }
+
+    .countdown-unit:hover {
+      transform: translateY(-3px) scale(1.05);
+      border-color: rgba(212,160,23,0.6);
+    }
+
+    .countdown-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--gold-light);
+      line-height: 1;
+      display: inline-block;
+      position: relative;
+    }
+
+    .countdown-num .digit {
+      display: inline-block;
+      transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.2s;
+    }
+
+    .countdown-num .digit.flip {
+      animation: digit-flip 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    @keyframes digit-flip {
+      0% { transform: translateY(0) scale(1); }
+      30% { transform: translateY(-8px) scale(1.15); opacity: 0.5; }
+      100% { transform: translateY(0) scale(1); opacity: 1; }
+    }
+
+    .countdown-label {
+      font-size: 0.65rem;
+      color: rgba(255,248,231,0.7);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-top: 4px;
+    }
+
+    .countdown-passed {
+      color: var(--gold-light);
+      font-family: 'Playfair Display', serif;
+      font-size: 1.2rem;
+      font-style: italic;
+    }
+
+    .scroll-hint {
+      position: absolute;
+      bottom: 24px;
+      left: 50%;
+      transform: translateX(-50%);
+      color: rgba(255,248,231,0.5);
+      font-size: 24px;
+      opacity: 0;
+    }
+
+    .hero.animate-in .scroll-hint {
+      animation: fade-in-up 0.8s ease-out 3.5s both, bounce 2s infinite 4.5s;
+    }
+
+    @keyframes bounce {
+      0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); }
+      40% { transform: translateX(-50%) translateY(-10px); }
+      60% { transform: translateX(-50%) translateY(-5px); }
+    }
+
+    /* ── Section Styles ── */
+    section { padding: 60px 20px; }
+
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.5rem, 4vw, 2rem);
+      color: var(--red-deep);
+      text-align: center;
+      margin-bottom: 8px;
+    }
+
+    .section-divider {
+      width: 0px;
+      height: 3px;
+      background: linear-gradient(90deg, var(--gold-primary), var(--gold-light));
+      margin: 0 auto 32px;
+      border-radius: 2px;
+      transition: width 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .reveal.visible .section-divider { width: 60px; }
+
+    /* ── About Section ── */
+    .about {
+      background: var(--white);
+      max-width: 100%;
+    }
+
+    .about-content {
+      max-width: 640px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .about-quote {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.1rem, 3vw, 1.4rem);
+      font-style: italic;
+      color: var(--red-deep);
+      line-height: 1.6;
+      margin-bottom: 24px;
+      position: relative;
+      padding: 0 16px;
+    }
+
+    .about-quote::before {
+      content: '\201C';
+      font-size: 4rem;
+      color: var(--gold-primary);
+      opacity: 0.4;
+      position: absolute;
+      top: -20px;
+      left: -5px;
+      font-family: 'Playfair Display', serif;
+    }
+
+    .about-text {
+      font-size: 0.95rem;
+      color: var(--charcoal-light);
+      line-height: 1.8;
+      margin-bottom: 16px;
+    }
+
+    .about-highlight {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: linear-gradient(135deg, var(--gold-pale), var(--cream));
+      border: 1px solid rgba(212,160,23,0.2);
+      border-radius: 12px;
+      padding: 16px 24px;
+      margin-top: 16px;
+      font-family: 'Playfair Display', serif;
+      font-size: 1.05rem;
+      color: var(--red-deep);
+      transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.4s;
+      cursor: default;
+    }
+
+    .about-highlight:hover {
+      transform: translateY(-2px) scale(1.02);
+      box-shadow: 0 8px 24px rgba(212,160,23,0.2);
+    }
+
+    /* ── Schedule / Timeline ── */
+    .schedule { background: var(--cream); }
+
+    .schedule-inner {
+      max-width: 640px;
+      margin: 0 auto;
+    }
+
+    .part-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 20px;
+      margin-top: 32px;
+      padding-bottom: 10px;
+      border-bottom: 2px solid var(--gold-primary);
+    }
+
+    .part-header:first-child { margin-top: 0; }
+
+    .part-icon {
+      font-size: 1.6rem;
+      display: inline-block;
+      transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    .part-header.visible .part-icon {
+      animation: icon-pop 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+    }
+
+    @keyframes icon-pop {
+      from { transform: scale(0) rotate(-30deg); }
+      to { transform: scale(1) rotate(0deg); }
+    }
+
+    .part-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.2rem;
+      color: var(--red-deep);
+      font-weight: 700;
+    }
+
+    .timeline {
+      position: relative;
+      padding-left: 28px;
+    }
+
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 6px;
+      top: 8px;
+      bottom: 8px;
+      width: 2px;
+      background: linear-gradient(to bottom, var(--gold-primary), var(--red-light), var(--gold-primary));
+      border-radius: 1px;
+      transform-origin: top;
+      transform: scaleY(0);
+      transition: transform 1.2s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .timeline.line-drawn::before { transform: scaleY(1); }
+
+    .timeline-item {
+      position: relative;
+      margin-bottom: 24px;
+      padding: 12px 16px;
+      border-radius: 12px;
+      transition: background 0.3s ease, transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    .timeline-item:active {
+      transform: scale(0.98);
+      background: rgba(212,160,23,0.05);
+    }
+
+    @media (hover: hover) {
+      .timeline-item:hover {
+        background: rgba(212,160,23,0.06);
+        transform: translateX(4px);
+      }
+    }
+
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: -34px;
+      top: 20px;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--gold-primary);
+      border: 2px solid var(--cream);
+      box-shadow: 0 0 0 2px var(--gold-primary);
+      transform: scale(0);
+      transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    .timeline-item.visible::before { transform: scale(1); }
+
+    .timeline-time {
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--red-primary);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 4px;
+    }
+
+    .timeline-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--charcoal);
+      margin-bottom: 4px;
+    }
+
+    .timeline-desc {
+      font-size: 0.88rem;
+      color: var(--charcoal-light);
+      line-height: 1.6;
+    }
+
+    .timeline-sub {
+      margin-top: 8px;
+      padding-left: 12px;
+      border-left: 2px solid rgba(212,160,23,0.3);
+    }
+
+    .timeline-sub-item {
+      font-size: 0.84rem;
+      color: var(--charcoal-light);
+      margin-bottom: 6px;
+      line-height: 1.5;
+      opacity: 0;
+      transform: translateX(-10px);
+      transition: opacity 0.4s ease, transform 0.4s ease;
+    }
+
+    .timeline-item.visible .timeline-sub-item {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    .timeline-sub-item strong { color: var(--charcoal); }
+
+    /* ── Venue Section ── */
+    .venue {
+      background: var(--white);
+      text-align: center;
+    }
+
+    .venue-card {
+      max-width: 480px;
+      margin: 0 auto;
+      background: linear-gradient(135deg, var(--gold-pale), var(--cream));
+      border: 1px solid rgba(212,160,23,0.25);
+      border-radius: 16px;
+      padding: 28px 24px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+      transition: transform 0.15s ease-out, box-shadow 0.3s;
+      will-change: transform;
+    }
+
+    .venue-card:hover {
+      box-shadow: 0 12px 40px rgba(0,0,0,0.1);
+    }
+
+    .venue-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.3rem;
+      color: var(--red-deep);
+      margin-bottom: 8px;
+    }
+
+    .venue-address {
+      font-size: 0.92rem;
+      color: var(--charcoal-light);
+      margin-bottom: 4px;
+      line-height: 1.5;
+    }
+
+    .venue-phone {
+      font-size: 0.88rem;
+      color: var(--charcoal-light);
+      margin-bottom: 20px;
+    }
+
+    .venue-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--red-primary);
+      color: var(--white);
+      text-decoration: none;
+      padding: 12px 24px;
+      border-radius: 10px;
+      font-size: 0.9rem;
+      font-weight: 500;
+      transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+      box-shadow: 0 3px 12px rgba(196,30,58,0.3);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .venue-btn::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(105deg, transparent 40%, rgba(255,255,255,0.2) 50%, transparent 60%);
+      background-size: 200% 100%;
+      animation: btn-shimmer 3s ease-in-out infinite;
+    }
+
+    @keyframes btn-shimmer {
+      0% { background-position: 200% 0; }
+      100% { background-position: -200% 0; }
+    }
+
+    .venue-btn:hover {
+      background: var(--red-deep);
+      transform: translateY(-2px) scale(1.03);
+      box-shadow: 0 6px 20px rgba(196,30,58,0.4);
+    }
+
+    .venue-btn:active {
+      transform: translateY(0) scale(0.97);
+      box-shadow: 0 2px 8px rgba(196,30,58,0.3);
+    }
+
+    /* ── Footer ── */
+    .footer {
+      background: var(--red-deep);
+      color: rgba(255,248,231,0.7);
+      text-align: center;
+      padding: 40px 20px 100px;
+      font-size: 0.85rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .footer::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -50%;
+      width: 200%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--gold-primary), transparent);
+      animation: footer-line 4s ease-in-out infinite;
+    }
+
+    @keyframes footer-line {
+      0% { transform: translateX(-25%); }
+      100% { transform: translateX(25%); }
+    }
+
+    .footer-blessing {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.3rem;
+      color: var(--gold-light);
+      margin-bottom: 8px;
+    }
+
+    .footer-sub { margin-bottom: 24px; }
+
+    .footer-horse {
+      font-size: 2rem;
+      margin-bottom: 12px;
+      display: inline-block;
+    }
+
+    /* ── Scroll Animations ── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.9s cubic-bezier(0.22, 1, 0.36, 1), transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .reveal-stagger {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1), transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .reveal-stagger.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ── Responsive ── */
+    @media (min-width: 768px) {
+      section { padding: 80px 40px; }
+      .nav { display: none; }
+      .desktop-nav {
+        display: flex !important;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 999;
+        background: rgba(139,26,26,0.95);
+        backdrop-filter: blur(12px);
+        justify-content: center;
+        gap: 32px;
+        padding: 14px 0;
+        transform: translateY(-100%);
+        transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+      }
+      .desktop-nav.visible { transform: translateY(0); }
+      .desktop-nav a {
+        color: rgba(255,248,231,0.8);
+        text-decoration: none;
+        font-size: 0.85rem;
+        font-weight: 500;
+        letter-spacing: 0.5px;
+        transition: color 0.3s;
+        position: relative;
+      }
+      .desktop-nav a::after {
+        content: '';
+        position: absolute;
+        bottom: -4px;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background: var(--gold-light);
+        transition: width 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+      }
+      .desktop-nav a:hover::after { width: 100%; }
+      .desktop-nav a:hover { color: var(--gold-light); }
+    }
+
+    .desktop-nav { display: none; }
+
+    @media (max-width: 380px) {
+      .countdown { gap: 8px; }
+      .countdown-unit { min-width: 56px; padding: 10px 6px; }
+      .countdown-num { font-size: 1.5rem; }
+    }
+
+    .blossom-divider {
+      text-align: center;
+      margin: 12px 0;
+      color: var(--red-light);
+      opacity: 0.4;
+      font-size: 0.9rem;
+      letter-spacing: 12px;
+    }
+
+    /* Reduced motion */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+      .invite-overlay { display: none; }
+      .hero .hero-title,
+      .hero .hero-subtitle,
+      .hero .hero-date,
+      .hero .countdown { opacity: 1; }
+      .svg-ring-outer, .svg-ring-inner, .svg-lantern-l, .svg-lantern-r,
+      .svg-100, .svg-subtitle, .svg-horse, .svg-year-text, .svg-blossoms,
+      .svg-sparkles { opacity: 1 !important; }
+    }
+  </style>
+</head>
+<body class="locked">
+
+<!-- Scroll Progress -->
+<div class="scroll-progress" id="scrollProgress"></div>
+
+<!-- Invitation Reveal Overlay -->
+<div class="invite-overlay" id="inviteOverlay">
+  <div class="curtain-left"></div>
+  <div class="curtain-right"></div>
+  <div class="curtain-seam"></div>
+  <div class="invite-content">
+    <div class="invite-seal">壽</div>
+    <div class="invite-text">
+      <span lang-en>You are cordially invited</span>
+      <span lang-vi>Trân trọng kính mời</span>
+    </div>
+    <div class="invite-hint">
+      <span lang-en>Tap to open</span>
+      <span lang-vi>Chạm để mở</span>
+    </div>
+  </div>
+</div>
+
+<!-- Global Floating Blossoms -->
+<div class="global-blossoms" id="globalBlossoms"></div>
+
+<!-- Language Toggle -->
+<div class="lang-toggle" id="langToggle">
+  <button class="lang-btn active" id="btn-en" onclick="setLang('en')">EN</button>
+  <button class="lang-btn" id="btn-vi" onclick="setLang('vi')">VI</button>
+</div>
+
+<!-- Desktop Nav -->
+<nav class="desktop-nav" id="desktopNav">
+  <a href="#hero"><span lang-en>Home</span><span lang-vi>Trang chủ</span></a>
+  <a href="#about"><span lang-en>About</span><span lang-vi>Giới thiệu</span></a>
+  <a href="#schedule"><span lang-en>Schedule</span><span lang-vi>Chương trình</span></a>
+  <a href="#venue"><span lang-en>Venue</span><span lang-vi>Địa điểm</span></a>
+</nav>
+
+<!-- ════════════ HERO ════════════ -->
+<section class="hero" id="hero">
+  <div class="hero-shimmer"></div>
+  <div class="hero-particles" id="particles"></div>
+
+  <div class="hero-svg-container" id="heroSvg">
+    <svg viewBox="0 0 400 420" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Centennial Lunar New Year celebration graphic">
+      <defs>
+        <radialGradient id="glow" cx="50%" cy="45%" r="50%">
+          <stop offset="0%" stop-color="#F0D060" stop-opacity="0.35"/>
+          <stop offset="60%" stop-color="#F0D060" stop-opacity="0.1"/>
+          <stop offset="100%" stop-color="#F0D060" stop-opacity="0"/>
+        </radialGradient>
+        <radialGradient id="hero-burst" cx="50%" cy="40%" r="45%">
+          <stop offset="0%" stop-color="#FFF8E7" stop-opacity="0.15"/>
+          <stop offset="40%" stop-color="#F0D060" stop-opacity="0.06"/>
+          <stop offset="100%" stop-color="#F0D060" stop-opacity="0"/>
+        </radialGradient>
+        <linearGradient id="gold-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="#F0D060"/>
+          <stop offset="50%" stop-color="#D4A017"/>
+          <stop offset="100%" stop-color="#F0D060"/>
+        </linearGradient>
+        <linearGradient id="gold-grad-v" x1="0%" y1="0%" x2="0%" y2="100%">
+          <stop offset="0%" stop-color="#F0D060"/>
+          <stop offset="100%" stop-color="#D4A017"/>
+        </linearGradient>
+        <linearGradient id="lantern-grad" x1="0%" y1="0%" x2="0%" y2="100%">
+          <stop offset="0%" stop-color="#E8505B"/>
+          <stop offset="100%" stop-color="#C41E3A"/>
+        </linearGradient>
+        <filter id="gold-glow-big">
+          <feGaussianBlur stdDeviation="5" result="blur1"/>
+          <feGaussianBlur stdDeviation="12" result="blur2"/>
+          <feMerge>
+            <feMergeNode in="blur2"/>
+            <feMergeNode in="blur1"/>
+            <feMergeNode in="SourceGraphic"/>
+          </feMerge>
+        </filter>
+        <filter id="gold-glow-sm">
+          <feGaussianBlur stdDeviation="2" result="blur"/>
+          <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+        </filter>
+      </defs>
+
+      <!-- Background glows -->
+      <circle cx="200" cy="180" r="195" fill="url(#glow)"/>
+      <circle cx="200" cy="165" r="140" fill="url(#hero-burst)"/>
+
+      <!-- Outer decorative rings -->
+      <circle class="svg-ring-outer" cx="200" cy="195" r="185" fill="none" stroke="url(#gold-grad)" stroke-width="1.5" opacity="0.5" stroke-dasharray="8,4"/>
+      <circle class="svg-ring-inner" cx="200" cy="195" r="178" fill="none" stroke="url(#gold-grad)" stroke-width="0.5" opacity="0.25"/>
+
+      <!-- Blossom clusters -->
+      <g class="svg-blossoms">
+        <g transform="translate(58, 55)">
+          <circle cx="0" cy="0" r="5" fill="#FFB7C5" opacity="0.9"/>
+          <circle cx="-4" cy="-6" r="4" fill="#FFB7C5" opacity="0.7"/>
+          <circle cx="5" cy="-4" r="3.5" fill="#FFB7C5" opacity="0.8"/>
+          <circle cx="6" cy="4" r="3" fill="#FFB7C5" opacity="0.6"/>
+          <circle cx="-6" cy="3" r="3" fill="#FFB7C5" opacity="0.7"/>
+          <circle cx="0" cy="0" r="2" fill="#F0D060" opacity="0.9"/>
+        </g>
+        <g transform="translate(342, 55)">
+          <circle cx="0" cy="0" r="5" fill="#FFB7C5" opacity="0.9"/>
+          <circle cx="-5" cy="-5" r="3.5" fill="#FFB7C5" opacity="0.7"/>
+          <circle cx="4" cy="-5" r="4" fill="#FFB7C5" opacity="0.8"/>
+          <circle cx="6" cy="3" r="3" fill="#FFB7C5" opacity="0.6"/>
+          <circle cx="-5" cy="4" r="3.5" fill="#FFB7C5" opacity="0.7"/>
+          <circle cx="0" cy="0" r="2" fill="#F0D060" opacity="0.9"/>
+        </g>
+        <circle cx="85" cy="80" r="2.5" fill="#FFB7C5" opacity="0.45"/>
+        <circle cx="315" cy="75" r="2" fill="#FFB7C5" opacity="0.45"/>
+        <circle cx="42" cy="115" r="2" fill="#FFB7C5" opacity="0.35"/>
+        <circle cx="358" cy="108" r="2.5" fill="#FFB7C5" opacity="0.35"/>
+        <circle cx="68" cy="340" r="2.5" fill="#FFB7C5" opacity="0.35"/>
+        <circle cx="332" cy="335" r="2" fill="#FFB7C5" opacity="0.35"/>
+        <g transform="translate(200, 400)" opacity="0.5">
+          <circle cx="-20" cy="0" r="4" fill="#FFB7C5"/>
+          <circle cx="0" cy="0" r="5" fill="#FFB7C5"/>
+          <circle cx="20" cy="0" r="4" fill="#FFB7C5"/>
+          <circle cx="-10" cy="-7" r="3" fill="#FFB7C5"/>
+          <circle cx="10" cy="-7" r="3" fill="#FFB7C5"/>
+          <circle cx="0" cy="0" r="2" fill="#F0D060"/>
+        </g>
+      </g>
+
+      <!-- Left lantern -->
+      <g class="svg-lantern-l" transform="translate(68, 90)">
+        <line x1="0" y1="-22" x2="0" y2="0" stroke="#D4A017" stroke-width="1.5"/>
+        <rect x="-3" y="-2" width="6" height="4" rx="1" fill="#D4A017"/>
+        <ellipse cx="0" cy="22" rx="14" ry="22" fill="url(#lantern-grad)" opacity="0.9"/>
+        <ellipse cx="0" cy="22" rx="10" ry="18" fill="none" stroke="#D4A017" stroke-width="0.7" opacity="0.5"/>
+        <text x="0" y="26" font-family="serif" font-size="10" fill="#F0D060" text-anchor="middle" opacity="0.8">福</text>
+        <rect x="-3" y="42" width="6" height="3" rx="1" fill="#D4A017"/>
+        <line x1="0" y1="45" x2="0" y2="55" stroke="#D4A017" stroke-width="1"/>
+        <line x1="-2" y1="55" x2="2" y2="55" stroke="#D4A017" stroke-width="1"/>
+      </g>
+
+      <!-- Right lantern -->
+      <g class="svg-lantern-r" transform="translate(332, 90)">
+        <line x1="0" y1="-22" x2="0" y2="0" stroke="#D4A017" stroke-width="1.5"/>
+        <rect x="-3" y="-2" width="6" height="4" rx="1" fill="#D4A017"/>
+        <ellipse cx="0" cy="22" rx="14" ry="22" fill="url(#lantern-grad)" opacity="0.9"/>
+        <ellipse cx="0" cy="22" rx="10" ry="18" fill="none" stroke="#D4A017" stroke-width="0.7" opacity="0.5"/>
+        <text x="0" y="26" font-family="serif" font-size="10" fill="#F0D060" text-anchor="middle" opacity="0.8">壽</text>
+        <rect x="-3" y="42" width="6" height="3" rx="1" fill="#D4A017"/>
+        <line x1="0" y1="45" x2="0" y2="55" stroke="#D4A017" stroke-width="1"/>
+        <line x1="-2" y1="55" x2="2" y2="55" stroke="#D4A017" stroke-width="1"/>
+      </g>
+
+      <!-- Decorative flourishes above 100 -->
+      <g class="svg-subtitle" opacity="0.5">
+        <line x1="110" y1="78" x2="170" y2="78" stroke="url(#gold-grad)" stroke-width="0.8"/>
+        <line x1="230" y1="78" x2="290" y2="78" stroke="url(#gold-grad)" stroke-width="0.8"/>
+        <circle cx="200" cy="78" r="3" fill="none" stroke="url(#gold-grad)" stroke-width="0.8"/>
+        <circle cx="200" cy="78" r="1" fill="#F0D060"/>
+      </g>
+
+      <!-- ★ HERO "100" ★ -->
+      <g class="svg-100" filter="url(#gold-glow-big)">
+        <text x="200" y="190" font-family="'Playfair Display', serif" font-size="120" font-weight="700" fill="url(#gold-grad)" text-anchor="middle" letter-spacing="-4">100</text>
+      </g>
+
+      <!-- Subtitle beneath 100 -->
+      <g class="svg-subtitle">
+        <line x1="105" y1="205" x2="175" y2="205" stroke="url(#gold-grad)" stroke-width="0.8" opacity="0.6"/>
+        <line x1="225" y1="205" x2="295" y2="205" stroke="url(#gold-grad)" stroke-width="0.8" opacity="0.6"/>
+        <text x="200" y="210" font-family="'Inter', sans-serif" font-size="12" fill="#F0D060" text-anchor="middle" letter-spacing="5" opacity="0.85">YEARS</text>
+        <text x="200" y="235" font-family="'Playfair Display', serif" font-size="13" fill="#F0D060" text-anchor="middle" letter-spacing="2" opacity="0.7" font-style="italic">of Grace</text>
+      </g>
+
+      <!-- Horse silhouette (galloping, facing right) -->
+      <g class="svg-horse" transform="translate(200, 310)" filter="url(#gold-glow-sm)">
+        <g transform="translate(-55, -30) scale(0.85)">
+          <!-- Body -->
+          <path d="
+            M 28,35
+            C 24,32 18,26 16,20
+            C 14,14 16,8 20,5
+            C 22,3 24,2 26,1
+            L 29,0
+            C 30,0 31,1 31,2
+            L 30,5
+            C 29,7 30,8 32,7
+            L 35,5
+            C 36,4 37,5 37,6
+            L 35,9
+            C 33,12 31,13 30,12
+            C 28,11 26,10 25,12
+            C 23,15 22,19 24,23
+            C 26,27 30,30 36,32
+            C 42,34 50,34 58,33
+            C 66,32 74,30 82,31
+            C 90,32 96,36 100,40
+            C 104,44 106,48 106,52
+            C 106,54 105,56 103,57
+
+            L 104,68
+            C 104,70 106,73 107,76
+            C 108,78 107,80 105,80
+            C 103,80 102,78 101,76
+            L 98,68
+            L 96,58
+
+            C 92,60 86,62 80,62
+
+            L 82,72
+            C 83,75 84,78 84,80
+            C 84,82 82,83 80,82
+            C 78,81 78,79 77,76
+            L 74,66
+            L 72,62
+
+            C 64,62 56,60 50,56
+            C 44,52 40,48 36,44
+
+            L 30,56
+            C 28,60 26,64 25,68
+            C 24,70 22,71 20,70
+            C 18,69 19,67 20,64
+            L 26,50
+            L 30,42
+
+            C 28,40 26,38 24,36
+
+            L 18,48
+            C 15,52 12,56 10,60
+            C 9,62 7,62 6,60
+            C 5,58 6,56 8,52
+            L 16,40
+            L 24,34
+
+            Z
+          " fill="url(#gold-grad-v)" opacity="0.9"/>
+          <!-- Eye -->
+          <circle cx="26" cy="8" r="1.2" fill="#8B1A1A"/>
+          <!-- Ear -->
+          <path d="M 29,0 C 30,-3 32,-4 33,-2 C 33,0 32,1 31,2" fill="url(#gold-grad-v)" opacity="0.8"/>
+          <!-- Mane -->
+          <path d="M 28,8 C 32,10 35,14 37,19 C 39,24 38,28 36,32" fill="none" stroke="#D4A017" stroke-width="1.8" opacity="0.5"/>
+          <path d="M 26,6 C 30,8 34,12 36,17 C 38,22 37,26 34,30" fill="none" stroke="#C8960F" stroke-width="1" opacity="0.35"/>
+          <!-- Tail -->
+          <path d="M 103,57 C 112,52 120,48 126,50 C 130,52 128,56 122,58 C 116,60 110,58 106,55" fill="url(#gold-grad-v)" opacity="0.6"/>
+          <path d="M 103,55 C 110,50 118,47 124,49" fill="none" stroke="#D4A017" stroke-width="1" opacity="0.4"/>
+        </g>
+      </g>
+
+      <!-- Year text below horse -->
+      <text class="svg-year-text" x="200" y="365" font-family="'Playfair Display', serif" font-size="13" fill="#F0D060" text-anchor="middle" font-style="italic" opacity="0.65">Year of the Horse · 2026</text>
+
+      <!-- Sparkles -->
+      <g class="svg-sparkles">
+        <circle cx="110" cy="130" r="1.5" fill="#F0D060" opacity="0.6">
+          <animate attributeName="opacity" values="0.3;0.9;0.3" dur="3s" repeatCount="indefinite"/>
+          <animate attributeName="r" values="1;2.2;1" dur="3s" repeatCount="indefinite"/>
+        </circle>
+        <circle cx="290" cy="130" r="1.5" fill="#F0D060" opacity="0.6">
+          <animate attributeName="opacity" values="0.8;0.3;0.8" dur="3s" repeatCount="indefinite"/>
+          <animate attributeName="r" values="1.5;0.8;1.5" dur="3s" repeatCount="indefinite"/>
+        </circle>
+        <circle cx="130" cy="245" r="1.2" fill="#F0D060" opacity="0.5">
+          <animate attributeName="opacity" values="0.2;0.7;0.2" dur="4s" repeatCount="indefinite"/>
+        </circle>
+        <circle cx="270" cy="250" r="1.2" fill="#F0D060" opacity="0.5">
+          <animate attributeName="opacity" values="0.7;0.2;0.7" dur="4s" repeatCount="indefinite"/>
+        </circle>
+        <circle cx="95" cy="185" r="1" fill="#FFB7C5" opacity="0.4">
+          <animate attributeName="opacity" values="0.2;0.6;0.2" dur="5s" repeatCount="indefinite"/>
+        </circle>
+        <circle cx="305" cy="190" r="1" fill="#FFB7C5" opacity="0.4">
+          <animate attributeName="opacity" values="0.5;0.1;0.5" dur="5s" repeatCount="indefinite"/>
+        </circle>
+      </g>
+    </svg>
+  </div>
+
+  <h1 class="hero-title">
+    <span lang-en>A Century of Grace<br>&amp; New Year Blessings</span>
+    <span lang-vi>Trăm Năm Hồng Phúc<br>&amp; Chúc Mừng Năm Mới</span>
+  </h1>
+  <p class="hero-subtitle">
+    <span lang-en>Celebrating a 100th Birthday &amp; The Year of the Horse</span>
+    <span lang-vi>Mừng Thọ 100 Tuổi &amp; Năm Bính Ngọ</span>
+  </p>
+  <p class="hero-date">
+    <span lang-en>February 21, 2026 · Diamond Seafood Palace</span>
+    <span lang-vi>21 tháng 2, 2026 · Nhà hàng Diamond Seafood Palace</span>
+  </p>
+
+  <div class="countdown" id="countdown"></div>
+  <div class="scroll-hint">&#8964;</div>
+</section>
+
+<!-- ════════════ ABOUT ════════════ -->
+<section class="about" id="about">
+  <div class="reveal">
+    <h2 class="section-title">
+      <span lang-en>A Life Celebrated</span>
+      <span lang-vi>Mừng Trăm Tuổi Thọ</span>
+    </h2>
+    <div class="section-divider"></div>
+  </div>
+
+  <div class="about-content">
+    <div class="about-quote reveal">
+      <span lang-en>One hundred years is not merely a measure of time, but a testament to endurance, love, and the quiet strength that holds a family together across generations.</span>
+      <span lang-vi>Trăm năm không chỉ là thước đo thời gian, mà là minh chứng cho sự kiên cường, tình yêu thương, và sức mạnh thầm lặng đã giữ gìn gia đình qua nhiều thế hệ.</span>
+    </div>
+
+    <p class="about-text reveal">
+      <span lang-en>On this extraordinary occasion, we gather to honor a remarkable life: a century of wisdom, sacrifice, and boundless love. From the homeland of Vietnam through the journey across oceans, through wars and peace, hardship and triumph, this life has been a beacon for an entire family.</span>
+      <span lang-vi>Nhân dịp đặc biệt này, chúng ta quây quần để tôn vinh một cuộc đời phi thường: một thế kỷ của trí tuệ, hy sinh, và tình yêu thương vô bờ. Từ quê hương Việt Nam qua hành trình vượt đại dương, qua chiến tranh và hòa bình, gian khổ và vinh quang, cuộc đời ấy đã là ngọn đuốc soi đường cho cả đại gia đình.</span>
+    </p>
+
+    <p class="about-text reveal">
+      <span lang-en>As the Lunar New Year ushers in the Year of the Horse, a symbol of vitality, perseverance, and forward motion, we celebrate not only the turning of seasons, but the extraordinary spirit of a father, a grandfather, and a great-grandfather whose life has touched everyone in this room. Four generations come together tonight to say: <em>thank you</em>.</span>
+      <span lang-vi>Khi Tết Nguyên Đán chào đón năm Bính Ngọ, biểu tượng của sức sống, sự bền bỉ, và tiến bước, chúng ta không chỉ mừng xuân mới, mà còn tôn vinh tinh thần phi thường của một người cha, một ông nội, một ông cố mà cuộc đời đã chạm đến trái tim mỗi người. Bốn thế hệ cùng quây quần tối nay để nói: <em>con cháu cảm ơn</em>.</span>
+    </p>
+
+    <div class="blossom-divider reveal">❀ ❀ ❀</div>
+
+    <p class="about-text reveal">
+      <span lang-en>This evening is both a Lunar New Year celebration and a centennial birthday, a once-in-a-lifetime gathering of family, tradition, and gratitude. Great-grandchildren Corey, Amelie, Cara, and Ezra will present flowers. Songs of gratitude will be sung. Poems will be read. And across every table, stories of a life well-lived will be shared.</span>
+      <span lang-vi>Buổi tối hôm nay vừa là lễ mừng Tết Nguyên Đán, vừa là lễ mừng thọ trăm tuổi, một dịp có một không hai để gia đình, truyền thống, và lòng biết ơn giao hòa. Các chắt Corey, Amelie, Cara, và Ezra sẽ dâng hoa. Những bài ca tri ân sẽ vang lên. Những vần thơ sẽ được ngâm đọc. Và trên mỗi bàn tiệc, những câu chuyện về một cuộc đời trọn vẹn sẽ được chia sẻ.</span>
+    </p>
+
+    <div class="about-highlight reveal">
+      🐴 <span lang-en>Year of the Horse · 2026 · A Century of Grace</span><span lang-vi>Năm Bính Ngọ · 2026 · Trăm Năm Hồng Phúc</span>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════ SCHEDULE ════════════ -->
+<section class="schedule" id="schedule">
+  <div class="reveal">
+    <h2 class="section-title">
+      <span lang-en>Evening Program</span>
+      <span lang-vi>Chương Trình Buổi Tối</span>
+    </h2>
+    <div class="section-divider"></div>
+  </div>
+
+  <div class="schedule-inner">
+
+    <div class="part-header reveal">
+      <span class="part-icon">🧧</span>
+      <span class="part-title">
+        <span lang-en>Part I: Tết Celebration</span>
+        <span lang-vi>Phần I: Mừng Tết Nguyên Đán</span>
+      </span>
+    </div>
+
+    <div class="timeline" id="timeline1">
+      <div class="timeline-item reveal-stagger">
+        <div class="timeline-time">4:30 PM</div>
+        <div class="timeline-title">
+          <span lang-en>Arrival &amp; Gathering</span>
+          <span lang-vi>Đón Tiếp &amp; Họp Mặt</span>
+        </div>
+        <div class="timeline-desc">
+          <span lang-en>Family and friends arrive at Diamond Seafood Palace.</span>
+          <span lang-vi>Gia đình và bạn bè tề tựu tại nhà hàng Diamond Seafood Palace.</span>
+        </div>
+      </div>
+
+      <div class="timeline-item reveal-stagger">
+        <div class="timeline-time">5:00 PM</div>
+        <div class="timeline-title">
+          <span lang-en>Lunar New Year Traditions</span>
+          <span lang-vi>Chúc Tết &amp; Lì Xì</span>
+        </div>
+        <div class="timeline-sub">
+          <div class="timeline-sub-item"><span lang-en>Traditional New Year greetings</span><span lang-vi>Chúc Tết truyền thống</span></div>
+          <div class="timeline-sub-item"><span lang-en>Distribution of Red Envelopes (<em>Lì Xì</em>)</span><span lang-vi>Phát Lì Xì (tiền lộc)</span></div>
+          <div class="timeline-sub-item"><span lang-en>Commemorative family photos</span><span lang-vi>Chụp ảnh kỷ niệm gia đình</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="part-header reveal">
+      <span class="part-icon">🎂</span>
+      <span class="part-title">
+        <span lang-en>Part II: Centennial Birthday Celebration</span>
+        <span lang-vi>Phần II: Lễ Mừng Thọ 100 Tuổi</span>
+      </span>
+    </div>
+
+    <div class="timeline" id="timeline2">
+      <div class="timeline-item reveal-stagger">
+        <div class="timeline-time">6:00 PM</div>
+        <div class="timeline-title"><span lang-en>Welcome</span><span lang-vi>Khai Mạc</span></div>
+        <div class="timeline-desc"><span lang-en>Opening of the birthday lantern and reception of guests.</span><span lang-vi>Thắp đèn khai mạc và đón khách.</span></div>
+      </div>
+
+      <div class="timeline-item reveal-stagger">
+        <div class="timeline-time">6:30 PM</div>
+        <div class="timeline-title"><span lang-en>Tributes &amp; Gratitude</span><span lang-vi>Tri Ân &amp; Lời Chúc</span></div>
+        <div class="timeline-sub">
+          <div class="timeline-sub-item"><span lang-en><strong>Family Address:</strong> Words of gratitude on behalf of the children.</span><span lang-vi><strong>Lời Tri Ân:</strong> Anh cả đại diện con cháu dâng lời cảm tạ công ơn sinh thành dưỡng dục.</span></div>
+          <div class="timeline-sub-item"><span lang-en><strong>Floral Offerings:</strong> Presented by great-grandchildren Corey, Amelie, Cara, and Ezra.</span><span lang-vi><strong>Dâng Hoa:</strong> Các chắt Corey, Amelie, Cara, và Ezra dâng hoa chúc thọ.</span></div>
+          <div class="timeline-sub-item"><span lang-en><strong>Response:</strong> A few heartfelt words shared with family.</span><span lang-vi><strong>Đáp Từ:</strong> Cha chia sẻ tâm tình cùng con cháu.</span></div>
+          <div class="timeline-sub-item"><span lang-en><strong>Song:</strong> "The Merit of Birth and Upbringing"</span><span lang-vi><strong>Bài Hát:</strong> Anh Hào hát bài "Công Cha Nghĩa Mẹ"</span></div>
+          <div class="timeline-sub-item"><span lang-en><strong>Grand Toast:</strong> Wishing health, longevity, and happiness.</span><span lang-vi><strong>Nâng Ly:</strong> Chúc sức khỏe, trường thọ, và hạnh phúc.</span></div>
+        </div>
+      </div>
+
+      <div class="timeline-item reveal-stagger">
+        <div class="timeline-time">7:00 PM</div>
+        <div class="timeline-title"><span lang-en>Dinner &amp; Reflections</span><span lang-vi>Tiệc Tối &amp; Chia Sẻ</span></div>
+        <div class="timeline-desc"><span lang-en>Guests are invited to share short wishes or favorite memories.</span><span lang-vi>Quý khách được mời chia sẻ kỷ niệm và lời chúc.</span></div>
+      </div>
+
+      <div class="timeline-item reveal-stagger">
+        <div class="timeline-time">7:30 PM</div>
+        <div class="timeline-title"><span lang-en>Entertainment</span><span lang-vi>Văn Nghệ</span></div>
+        <div class="timeline-sub">
+          <div class="timeline-sub-item"><span lang-en><strong>Poetry Reading:</strong> A self-composed poem, <em>"Self-Narration"</em></span><span lang-vi><strong>Ngâm Thơ:</strong> Bài thơ tự sáng tác, <em>"Tự Thuật"</em></span></div>
+          <div class="timeline-sub-item"><span lang-en><strong>Table Greetings:</strong> Visiting each table to share thanks.</span><span lang-vi><strong>Chào Bàn:</strong> Đi chào và tặng quà thọ từng bàn.</span></div>
+          <div class="timeline-sub-item"><span lang-en><strong>Performance:</strong> Cultural entertainment program commences.</span><span lang-vi><strong>Văn Nghệ:</strong> Chương trình văn nghệ mừng Xuân và mừng thọ.</span></div>
+        </div>
+      </div>
+
+      <div class="timeline-item reveal-stagger">
+        <div class="timeline-time">8:30 PM</div>
+        <div class="timeline-title"><span lang-en>The Grand Finale</span><span lang-vi>Lễ Cắt Bánh</span></div>
+        <div class="timeline-desc"><span lang-en>Cake-cutting ceremony with family.</span><span lang-vi>Cha và các con cùng cắt bánh mừng thọ.</span></div>
+      </div>
+
+      <div class="timeline-item reveal-stagger">
+        <div class="timeline-time">9:00 PM</div>
+        <div class="timeline-title"><span lang-en>Celebration Concluded</span><span lang-vi>Bế Mạc</span></div>
+        <div class="timeline-desc"><span lang-en>Thank you and farewell to all guests.</span><span lang-vi>Cảm ơn và tiễn khách.</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════ VENUE ════════════ -->
+<section class="venue" id="venue">
+  <div class="reveal">
+    <h2 class="section-title"><span lang-en>Venue</span><span lang-vi>Địa Điểm</span></h2>
+    <div class="section-divider"></div>
+  </div>
+
+  <div class="venue-card reveal" id="venueCard">
+    <div class="venue-name">Diamond Seafood Palace</div>
+    <div class="venue-address">8058 Lampson Ave<br>Stanton, CA 90680</div>
+    <div class="venue-phone">(714) 379-2338 · (714) 891-5347</div>
+    <a class="venue-btn" href="https://maps.google.com/?q=Diamond+Seafood+Palace+8058+Lampson+Ave+Stanton+CA+90680" target="_blank" rel="noopener">
+      📍 <span lang-en>Get Directions</span><span lang-vi>Chỉ Đường</span>
+    </a>
+  </div>
+</section>
+
+<!-- ════════════ FOOTER ════════════ -->
+<footer class="footer reveal">
+  <div class="footer-horse">🐴</div>
+  <div class="footer-blessing">
+    <span lang-en>Wishing Health, Longevity &amp; Happiness</span>
+    <span lang-vi>Chúc Sức Khỏe, Trường Thọ &amp; Hạnh Phúc</span>
+  </div>
+  <div class="footer-sub">
+    <span lang-en>With love from the entire family</span>
+    <span lang-vi>Với tất cả tình yêu thương từ đại gia đình</span>
+  </div>
+  <div style="opacity:0.5; font-size:0.75rem;">
+    <span lang-en>February 21, 2026 · Year of the Horse</span>
+    <span lang-vi>21 tháng 2, 2026 · Năm Bính Ngọ</span>
+  </div>
+</footer>
+
+<!-- ════════════ MOBILE NAV ════════════ -->
+<nav class="nav" id="mobileNav">
+  <a href="#hero"><span class="nav-icon">🏠</span><span lang-en>Home</span><span lang-vi>Chủ</span></a>
+  <a href="#about"><span class="nav-icon">💛</span><span lang-en>About</span><span lang-vi>Về</span></a>
+  <a href="#schedule"><span class="nav-icon">📋</span><span lang-en>Schedule</span><span lang-vi>Lịch</span></a>
+  <a href="#venue"><span class="nav-icon">📍</span><span lang-en>Venue</span><span lang-vi>Nơi</span></a>
+</nav>
+
+<script>
+(function() {
+  'use strict';
+
+  // ── Language Toggle ──
+  window.setLang = function(lang) {
+    document.body.classList.toggle('vi', lang === 'vi');
+    document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+    document.getElementById('btn-vi').classList.toggle('active', lang === 'vi');
+    document.documentElement.lang = lang === 'vi' ? 'vi' : 'en';
+    localStorage.setItem('lang', lang);
+  };
+
+  const saved = localStorage.getItem('lang');
+  if (saved) setLang(saved);
+
+  // ── Invitation Reveal ──
+  const overlay = document.getElementById('inviteOverlay');
+  const hero = document.querySelector('.hero');
+  let revealed = false;
+
+  function openInvite() {
+    if (revealed) return;
+    revealed = true;
+    overlay.classList.add('opening');
+    document.body.classList.remove('locked');
+
+    setTimeout(() => {
+      hero.classList.add('animate-in');
+      document.getElementById('langToggle').classList.add('visible');
+      document.getElementById('mobileNav').classList.add('visible');
+      document.getElementById('desktopNav').classList.add('visible');
+      initBlossoms();
+    }, 600);
+
+    setTimeout(() => {
+      overlay.classList.add('done');
+      hero.classList.add('ambient');
+    }, 2000);
+  }
+
+  overlay.addEventListener('click', openInvite);
+  overlay.addEventListener('touchstart', openInvite, { passive: true });
+
+  // ── Countdown Timer with Digit Flip ──
+  let prevDigits = {};
+
+  function updateCountdown() {
+    const target = new Date('2026-02-21T16:30:00-08:00');
+    const now = new Date();
+    const diff = target - now;
+    const el = document.getElementById('countdown');
+
+    if (diff <= 0) {
+      const endTime = new Date('2026-02-21T21:00:00-08:00');
+      if (now <= endTime) {
+        el.innerHTML = '<div class="countdown-passed"><span lang-en>🎉 The celebration is happening now!</span><span lang-vi>🎉 Buổi lễ đang diễn ra!</span></div>';
+      } else {
+        el.innerHTML = '<div class="countdown-passed"><span lang-en>🙏 Thank you for celebrating with us</span><span lang-vi>🙏 Cảm ơn quý vị đã đến chung vui</span></div>';
+      }
+      return;
+    }
+
+    const days = Math.floor(diff / 86400000);
+    const hours = Math.floor((diff % 86400000) / 3600000);
+    const mins = Math.floor((diff % 3600000) / 60000);
+    const secs = Math.floor((diff % 60000) / 1000);
+
+    const isVi = document.body.classList.contains('vi');
+    const labels = isVi ? ['Ngày', 'Giờ', 'Phút', 'Giây'] : ['Days', 'Hours', 'Mins', 'Secs'];
+    const keys = ['d', 'h', 'm', 's'];
+    const values = [days, hours, mins, secs];
+
+    el.innerHTML = values.map((n, i) => {
+      const str = String(n).padStart(2, '0');
+      const prev = prevDigits[keys[i]] || str;
+      const digits = str.split('').map((d, j) => {
+        const changed = prev[j] !== d;
+        return `<span class="digit${changed ? ' flip' : ''}">${d}</span>`;
+      }).join('');
+      prevDigits[keys[i]] = str;
+      return `<div class="countdown-unit"><div class="countdown-num">${digits}</div><div class="countdown-label">${labels[i]}</div></div>`;
+    }).join('');
+  }
+
+  updateCountdown();
+  setInterval(updateCountdown, 1000);
+
+  // ── Floating Particles ──
+  (function() {
+    const container = document.getElementById('particles');
+    const colors = ['#F0D060', '#FFB7C5', '#E8505B', '#D4A017'];
+    for (let i = 0; i < 25; i++) {
+      const p = document.createElement('div');
+      p.className = 'particle';
+      const size = Math.random() * 6 + 2;
+      p.style.cssText = `width:${size}px;height:${size}px;left:${Math.random()*100}%;background:${colors[Math.floor(Math.random()*colors.length)]};animation-duration:${Math.random()*8+8}s;animation-delay:${Math.random()*10}s;`;
+      container.appendChild(p);
+    }
+  })();
+
+  // ── Global Cherry Blossom Petals ──
+  function initBlossoms() {
+    const container = document.getElementById('globalBlossoms');
+    const petalSvg = `<svg viewBox="0 0 12 12"><ellipse cx="6" cy="4" rx="3" ry="4" fill="#FFB7C5" opacity="0.6"/><ellipse cx="4" cy="7" rx="2.5" ry="3.5" fill="#FFB7C5" opacity="0.5" transform="rotate(-30 4 7)"/></svg>`;
+
+    for (let i = 0; i < 12; i++) {
+      const petal = document.createElement('div');
+      petal.className = 'blossom-petal';
+      petal.innerHTML = petalSvg;
+      const size = Math.random() * 10 + 8;
+      petal.style.cssText = `width:${size}px;height:${size}px;left:${Math.random()*100}%;animation-duration:${Math.random()*12+10}s;animation-delay:${Math.random()*15}s;`;
+      container.appendChild(petal);
+    }
+  }
+
+  // ── Scroll Progress Bar ──
+  const progressBar = document.getElementById('scrollProgress');
+  function updateProgress() {
+    const scrollTop = window.scrollY;
+    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    const progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+    progressBar.style.width = progress + '%';
+  }
+
+  // ── Hero Parallax ──
+  const heroSvg = document.getElementById('heroSvg');
+  const heroTitle = document.querySelector('.hero-title');
+  function updateParallax() {
+    const scrollY = window.scrollY;
+    const heroH = hero.offsetHeight;
+    if (scrollY < heroH) {
+      const ratio = scrollY / heroH;
+      heroSvg.style.transform = `translateY(${scrollY * 0.15}px) scale(${1 - ratio * 0.08})`;
+      if (heroTitle) heroTitle.style.transform = `translateY(${scrollY * 0.25}px)`;
+    }
+  }
+
+  // ── Scroll Reveal with Stagger ──
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+  document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+  const staggerObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const parent = entry.target.closest('.timeline');
+        if (parent && !parent.classList.contains('line-drawn')) {
+          parent.classList.add('line-drawn');
+        }
+        const siblings = entry.target.parentElement.querySelectorAll('.reveal-stagger');
+        const idx = Array.from(siblings).indexOf(entry.target);
+        entry.target.style.transitionDelay = (idx * 0.15) + 's';
+        entry.target.classList.add('visible');
+
+        const subItems = entry.target.querySelectorAll('.timeline-sub-item');
+        subItems.forEach((item, i) => {
+          item.style.transitionDelay = (0.3 + i * 0.1) + 's';
+        });
+      }
+    });
+  }, { threshold: 0.15, rootMargin: '0px 0px -30px 0px' });
+
+  document.querySelectorAll('.reveal-stagger').forEach(el => staggerObserver.observe(el));
+
+  // ── Active Nav Highlight ──
+  const sections = document.querySelectorAll('section');
+  const navLinks = document.querySelectorAll('.nav a');
+  const sectionObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        navLinks.forEach(link => {
+          link.classList.toggle('active', link.getAttribute('href') === '#' + entry.target.id);
+        });
+      }
+    });
+  }, { threshold: 0.3 });
+
+  sections.forEach(s => sectionObserver.observe(s));
+
+  // ── Venue Card 3D Tilt ──
+  const venueCard = document.getElementById('venueCard');
+  if (venueCard) {
+    venueCard.addEventListener('mousemove', function(e) {
+      const rect = this.getBoundingClientRect();
+      const x = (e.clientX - rect.left) / rect.width - 0.5;
+      const y = (e.clientY - rect.top) / rect.height - 0.5;
+      this.style.transform = `perspective(600px) rotateY(${x * 8}deg) rotateX(${-y * 8}deg) scale(1.02)`;
+    });
+    venueCard.addEventListener('mouseleave', function() {
+      this.style.transform = 'perspective(600px) rotateY(0) rotateX(0) scale(1)';
+    });
+
+    let touchStartX, touchStartY;
+    venueCard.addEventListener('touchstart', function(e) {
+      touchStartX = e.touches[0].clientX;
+      touchStartY = e.touches[0].clientY;
+    }, { passive: true });
+    venueCard.addEventListener('touchmove', function(e) {
+      const rect = this.getBoundingClientRect();
+      const x = (e.touches[0].clientX - rect.left) / rect.width - 0.5;
+      const y = (e.touches[0].clientY - rect.top) / rect.height - 0.5;
+      this.style.transform = `perspective(600px) rotateY(${x * 6}deg) rotateX(${-y * 6}deg) scale(1.01)`;
+    }, { passive: true });
+    venueCard.addEventListener('touchend', function() {
+      this.style.transform = 'perspective(600px) rotateY(0) rotateX(0) scale(1)';
+    });
+  }
+
+  // ── Scroll handler (throttled via rAF) ──
+  let ticking = false;
+  window.addEventListener('scroll', function() {
+    if (!ticking) {
+      requestAnimationFrame(function() {
+        updateProgress();
+        updateParallax();
+        ticking = false;
+      });
+      ticking = true;
+    }
+  }, { passive: true });
+
+  // ── Device Orientation Parallax (mobile gyroscope) ──
+  if (window.DeviceOrientationEvent) {
+    window.addEventListener('deviceorientation', function(e) {
+      if (e.gamma === null) return;
+      const x = Math.max(-15, Math.min(15, e.gamma));
+      const y = Math.max(-15, Math.min(15, e.beta - 45));
+      if (heroSvg && window.scrollY < hero.offsetHeight) {
+        heroSvg.style.transform = `translate(${x * 0.5}px, ${y * 0.3}px)`;
+      }
+    }, { passive: true });
+  }
+
+})();
+</script>
+
+</body>
+</html>
