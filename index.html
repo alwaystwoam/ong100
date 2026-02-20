@@ -198,44 +198,37 @@
 
     /* ── Language Toggle ── */
     .lang-toggle {
-      position: fixed;
-      top: 16px;
-      right: 16px;
-      z-index: 1000;
-      display: flex;
-      background: rgba(255,255,255,0.95);
-      backdrop-filter: blur(10px);
-      border-radius: 24px;
-      box-shadow: 0 2px 12px rgba(0,0,0,0.15);
-      overflow: hidden;
-      border: 1px solid rgba(196,30,58,0.2);
-      opacity: 0;
-      transform: translateY(-10px);
-      transition: opacity 0.6s ease, transform 0.6s ease;
-    }
-
-    .lang-toggle.visible {
-      opacity: 1;
-      transform: translateY(0);
+      display: none;
     }
 
     .lang-btn {
-      padding: 8px 16px;
+      padding: 6px 12px;
       border: none;
       background: transparent;
       font-family: 'Inter', sans-serif;
-      font-size: 13px;
+      font-size: 12px;
       font-weight: 500;
       cursor: pointer;
       transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
-      color: var(--charcoal-light);
+      color: rgba(255,248,231,0.5);
+      letter-spacing: 0.5px;
+      border-radius: 12px;
     }
 
     .lang-btn:active { transform: scale(0.92); }
 
     .lang-btn.active {
-      background: var(--red-primary);
-      color: var(--white);
+      background: rgba(240,208,96,0.15);
+      color: var(--gold-light);
+    }
+
+    .nav-lang {
+      display: flex;
+      align-items: center;
+      border: 1px solid rgba(240,208,96,0.2);
+      border-radius: 16px;
+      overflow: hidden;
+      margin-left: 8px;
     }
 
     [lang-vi] { display: none; }
@@ -1019,11 +1012,17 @@
         z-index: 999;
         background: rgba(139,26,26,0.95);
         backdrop-filter: blur(12px);
+        align-items: center;
         justify-content: center;
         gap: 32px;
-        padding: 14px 0;
+        padding: 12px 24px;
         transform: translateY(-100%);
         transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+      }
+
+      .desktop-nav .nav-lang {
+        position: absolute;
+        right: 24px;
       }
       .desktop-nav.visible { transform: translateY(0); }
       .desktop-nav a {
@@ -1111,17 +1110,16 @@
 <div class="global-blossoms" id="globalBlossoms"></div>
 
 <!-- Language Toggle -->
-<div class="lang-toggle" id="langToggle">
-  <button class="lang-btn active" id="btn-en" onclick="setLang('en')">EN</button>
-  <button class="lang-btn" id="btn-vi" onclick="setLang('vi')">VI</button>
-</div>
-
 <!-- Desktop Nav -->
 <nav class="desktop-nav" id="desktopNav">
   <a href="#hero"><span lang-en>Home</span><span lang-vi>Trang chủ</span></a>
   <a href="#about"><span lang-en>About</span><span lang-vi>Giới thiệu</span></a>
   <a href="#schedule"><span lang-en>Schedule</span><span lang-vi>Chương trình</span></a>
   <a href="#venue"><span lang-en>Venue</span><span lang-vi>Địa điểm</span></a>
+  <div class="nav-lang">
+    <button class="lang-btn active" data-lang="en" onclick="setLang('en')">EN</button>
+    <button class="lang-btn" data-lang="vi" onclick="setLang('vi')">VI</button>
+  </div>
 </nav>
 
 <!-- ════════════ HERO ════════════ -->
@@ -1636,6 +1634,10 @@
   <a href="#about"><span class="nav-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></span><span lang-en>About</span><span lang-vi>Về</span></a>
   <a href="#schedule"><span class="nav-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></span><span lang-en>Schedule</span><span lang-vi>Lịch</span></a>
   <a href="#venue"><span class="nav-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></span><span lang-en>Venue</span><span lang-vi>Nơi</span></a>
+  <div class="nav-lang">
+    <button class="lang-btn active" data-lang="en" onclick="setLang('en')">EN</button>
+    <button class="lang-btn" data-lang="vi" onclick="setLang('vi')">VI</button>
+  </div>
 </nav>
 
 <script>
@@ -1645,8 +1647,9 @@
   // ── Language Toggle ──
   window.setLang = function(lang) {
     document.body.classList.toggle('vi', lang === 'vi');
-    document.getElementById('btn-en').classList.toggle('active', lang === 'en');
-    document.getElementById('btn-vi').classList.toggle('active', lang === 'vi');
+    document.querySelectorAll('.lang-btn').forEach(function(btn) {
+      btn.classList.toggle('active', btn.getAttribute('data-lang') === lang);
+    });
     document.documentElement.lang = lang === 'vi' ? 'vi' : 'en';
     localStorage.setItem('lang', lang);
   };
@@ -1667,7 +1670,6 @@
 
     setTimeout(() => {
       hero.classList.add('animate-in');
-      document.getElementById('langToggle').classList.add('visible');
       document.getElementById('mobileNav').classList.add('visible');
       document.getElementById('desktopNav').classList.add('visible');
       initBlossoms();
