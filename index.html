@@ -403,10 +403,9 @@
     }
 
     @keyframes horse-gallop {
-      0% { opacity: 0; transform: translateY(20px) scale(0.7) rotate(5deg); }
-      50% { opacity: 1; transform: translateY(-4px) scale(1.04) rotate(-1deg); }
-      70% { transform: translateY(2px) scale(0.98) rotate(0.5deg); }
-      100% { opacity: 1; transform: translateY(0) scale(1) rotate(0deg); }
+      0% { opacity: 0; transform: translateY(15px) scale(0.5); }
+      60% { opacity: 1; transform: translateY(-3px) scale(1.05); }
+      100% { opacity: 1; transform: translateY(0) scale(1); }
     }
 
     .hero.animate-in .svg-year-text {
@@ -1210,71 +1209,58 @@
 
       <!-- Subtitle beneath 100 -->
       <g class="svg-subtitle">
-        <line x1="105" y1="205" x2="175" y2="205" stroke="url(#gold-grad)" stroke-width="0.8" opacity="0.6"/>
-        <line x1="225" y1="205" x2="295" y2="205" stroke="url(#gold-grad)" stroke-width="0.8" opacity="0.6"/>
-        <text x="200" y="210" font-family="'Inter', sans-serif" font-size="12" fill="#F0D060" text-anchor="middle" letter-spacing="5" opacity="0.85">YEARS</text>
-        <text x="200" y="235" font-family="'Playfair Display', serif" font-size="13" fill="#F0D060" text-anchor="middle" letter-spacing="2" opacity="0.7" font-style="italic">of Grace</text>
+        <line x1="90" y1="208" x2="160" y2="208" stroke="url(#gold-grad)" stroke-width="0.8" opacity="0.5"/>
+        <line x1="240" y1="208" x2="310" y2="208" stroke="url(#gold-grad)" stroke-width="0.8" opacity="0.5"/>
+        <text x="200" y="214" font-family="'Playfair Display', serif" font-size="18" fill="#F0D060" text-anchor="middle" letter-spacing="3" opacity="0.85" font-style="italic">Years of Grace</text>
       </g>
 
-      <!-- Horse (geometric rearing style, facing left) -->
-      <g class="svg-horse" transform="translate(200, 288)">
-        <g transform="translate(-42, -44) scale(0.78)">
+      <!-- Lotus flowers (center decoration) -->
+      <g class="svg-horse" transform="translate(200, 285)">
+        <!-- Center lotus (large) -->
+        <g transform="scale(1.1)">
+          <!-- Back petals (lighter, spread wider) -->
+          <ellipse cx="-18" cy="-6" rx="7" ry="18" fill="#FFB7C5" opacity="0.35" transform="rotate(-40 -18 -6)"/>
+          <ellipse cx="18" cy="-6" rx="7" ry="18" fill="#FFB7C5" opacity="0.35" transform="rotate(40 18 -6)"/>
+          <ellipse cx="-22" cy="2" rx="6" ry="16" fill="#FFB7C5" opacity="0.25" transform="rotate(-55 -22 2)"/>
+          <ellipse cx="22" cy="2" rx="6" ry="16" fill="#FFB7C5" opacity="0.25" transform="rotate(55 22 2)"/>
+          <!-- Mid petals -->
+          <ellipse cx="-12" cy="-4" rx="7" ry="18" fill="#FFB7C5" opacity="0.5" transform="rotate(-25 -12 -4)"/>
+          <ellipse cx="12" cy="-4" rx="7" ry="18" fill="#FFB7C5" opacity="0.5" transform="rotate(25 12 -4)"/>
+          <!-- Front petals -->
+          <ellipse cx="-6" cy="-2" rx="6.5" ry="19" fill="#FFD4DE" opacity="0.6" transform="rotate(-10 -6 -2)"/>
+          <ellipse cx="6" cy="-2" rx="6.5" ry="19" fill="#FFD4DE" opacity="0.6" transform="rotate(10 6 -2)"/>
+          <ellipse cx="0" cy="-2" rx="5.5" ry="18" fill="#FFE0E8" opacity="0.65"/>
+          <!-- Gold center -->
+          <circle cx="0" cy="2" r="6" fill="#F0D060" opacity="0.7"/>
+          <circle cx="0" cy="2" r="3.5" fill="#D4A017" opacity="0.6"/>
+          <circle cx="0" cy="2" r="1.5" fill="#F0D060" opacity="0.9"/>
+        </g>
 
-          <!-- Back legs (grounded, behind body) -->
-          <path d="M 80,50 L 88,50 L 96,72 L 92,74 L 84,98 L 76,98 L 82,74 L 80,72 Z" fill="#9A6B10"/>
-          <path d="M 60,54 L 68,54 L 62,74 L 58,76 L 48,98 L 40,98 L 50,76 L 52,74 Z" fill="#866008"/>
+        <!-- Left lotus (smaller) -->
+        <g transform="translate(-50, 10) scale(0.6)">
+          <ellipse cx="-14" cy="-4" rx="6" ry="14" fill="#FFB7C5" opacity="0.3" transform="rotate(-35 -14 -4)"/>
+          <ellipse cx="14" cy="-4" rx="6" ry="14" fill="#FFB7C5" opacity="0.3" transform="rotate(35 14 -4)"/>
+          <ellipse cx="-7" cy="-2" rx="5.5" ry="15" fill="#FFB7C5" opacity="0.45" transform="rotate(-15 -7 -2)"/>
+          <ellipse cx="7" cy="-2" rx="5.5" ry="15" fill="#FFB7C5" opacity="0.45" transform="rotate(15 7 -2)"/>
+          <ellipse cx="0" cy="-1" rx="5" ry="14" fill="#FFD4DE" opacity="0.55"/>
+          <circle cx="0" cy="2" r="4.5" fill="#F0D060" opacity="0.6"/>
+          <circle cx="0" cy="2" r="2" fill="#D4A017" opacity="0.5"/>
+        </g>
 
-          <!-- Tail flowing right -->
-          <path d="M 84,28 C 96,16 114,14 122,22 C 114,28 98,32 86,32 Z" fill="#F0D060" opacity="0.3"/>
-          <path d="M 82,30 C 94,20 110,20 116,26 C 108,34 94,36 84,34 Z" fill="#D4A017" opacity="0.5"/>
-
-          <!-- Hip/belly golden circle -->
-          <ellipse cx="64" cy="42" rx="28" ry="24" fill="#F0D060"/>
-
-          <!-- Main body + neck + head -->
-          <path d="
-            M 15,14
-            C 10,8 12,-2 20,-6
-            C 26,-8 30,-4 30,0
-            L 28,10
-            C 32,6 40,6 48,12
-            C 56,18 62,28 68,36
-            C 76,44 86,46 92,40
-            C 96,36 96,28 92,24
-            C 98,30 98,42 92,50
-            C 84,58 72,58 62,52
-            C 52,46 42,36 34,26
-            C 28,20 22,16 15,14
-            Z
-          " fill="url(#gold-grad)"/>
-
-          <!-- Mane (dark shapes flowing back) -->
-          <path d="M 28,0 C 38,-8 50,-4 54,4 C 46,-2 36,-2 28,6 Z" fill="#8B1A1A" opacity="0.9"/>
-          <path d="M 30,8 C 42,0 54,4 58,14 C 50,8 40,6 32,12 Z" fill="#8B1A1A" opacity="0.7"/>
-          <path d="M 34,16 C 46,8 58,14 60,24 C 52,16 42,14 36,20 Z" fill="#8B1A1A" opacity="0.5"/>
-
-          <!-- Front legs (raised, angular, geometric) -->
-          <!-- Leg 1 (higher) -->
-          <path d="M 22,16 L 28,18 L 12,0 L 4,0 L -6,12 L -10,30 L -2,30 L 2,16 L 8,6 Z" fill="#C89520"/>
-          <!-- Hoof 1 -->
-          <path d="M -10,30 L -2,30 L -2,36 L -12,36 Z" fill="#7A5507"/>
-
-          <!-- Leg 2 (lower, slightly behind) -->
-          <path d="M 30,26 L 36,28 L 20,8 L 12,10 L 0,24 L -6,44 L 2,44 L 8,28 L 14,18 Z" fill="#B08514"/>
-          <!-- Hoof 2 -->
-          <path d="M -6,44 L 2,44 L 2,50 L -8,50 Z" fill="#6B4A06"/>
-
-          <!-- Ear -->
-          <path d="M 20,-2 L 16,-12 L 24,-4 Z" fill="#8B1A1A"/>
-
-          <!-- Eye -->
-          <circle cx="19" cy="4" r="2" fill="#4A0808"/>
-          <circle cx="19.5" cy="3.5" r="0.6" fill="#F0D060" opacity="0.5"/>
+        <!-- Right lotus (smaller) -->
+        <g transform="translate(50, 10) scale(0.6)">
+          <ellipse cx="-14" cy="-4" rx="6" ry="14" fill="#FFB7C5" opacity="0.3" transform="rotate(-35 -14 -4)"/>
+          <ellipse cx="14" cy="-4" rx="6" ry="14" fill="#FFB7C5" opacity="0.3" transform="rotate(35 14 -4)"/>
+          <ellipse cx="-7" cy="-2" rx="5.5" ry="15" fill="#FFB7C5" opacity="0.45" transform="rotate(-15 -7 -2)"/>
+          <ellipse cx="7" cy="-2" rx="5.5" ry="15" fill="#FFB7C5" opacity="0.45" transform="rotate(15 7 -2)"/>
+          <ellipse cx="0" cy="-1" rx="5" ry="14" fill="#FFD4DE" opacity="0.55"/>
+          <circle cx="0" cy="2" r="4.5" fill="#F0D060" opacity="0.6"/>
+          <circle cx="0" cy="2" r="2" fill="#D4A017" opacity="0.5"/>
         </g>
       </g>
 
-      <!-- Year text below horse -->
-      <text class="svg-year-text" x="200" y="348" font-family="'Playfair Display', serif" font-size="13" fill="#F0D060" text-anchor="middle" font-style="italic" opacity="0.65">Year of the Horse · 2026</text>
+      <!-- Year of the Horse text -->
+      <text class="svg-year-text" x="200" y="330" font-family="'Playfair Display', serif" font-size="13" fill="#F0D060" text-anchor="middle" font-style="italic" opacity="0.65">Year of the Horse · 2026</text>
 
       <!-- Sparkles -->
       <g class="svg-sparkles">
